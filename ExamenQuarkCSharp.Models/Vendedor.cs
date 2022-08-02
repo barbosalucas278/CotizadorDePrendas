@@ -11,11 +11,13 @@ namespace ExamenQuarkCSharp.Models
         public int Codigo { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
+        public List<Cotizacion> HistorialDeCotizaciones { get; set; }
+
         public Vendedor()
         {
-
+            HistorialDeCotizaciones = new List<Cotizacion>();
         }
-        public Vendedor(int codigo, string nombre, string apellido)
+        public Vendedor(int codigo, string nombre, string apellido) : this()
         {
             Codigo = codigo;
             Nombre = nombre;
@@ -35,6 +37,20 @@ namespace ExamenQuarkCSharp.Models
         {
             StringBuilder st = new StringBuilder();
             st.Append($"{Nombre} {Apellido} | {Codigo}");
+            return st.ToString();
+        }
+        public void GuardarCotizacion(Cotizacion cotizacion)
+        {
+            HistorialDeCotizaciones.Add(cotizacion);
+        }
+        public string MostrarHistorialDeCotizaciones()
+        {
+            StringBuilder st = new StringBuilder();
+            foreach (var cotizacion in HistorialDeCotizaciones)
+            {
+                st.AppendLine(cotizacion.ToString());
+                st.AppendLine($"-------------------------------------------");
+            }
             return st.ToString();
         }
     }

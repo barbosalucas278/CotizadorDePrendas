@@ -20,6 +20,7 @@ namespace ExamenQuarkCSharp
         {
             InitializeComponent();
         }
+        #region Eventos
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -34,16 +35,16 @@ namespace ExamenQuarkCSharp
 
         private void ButtomCotizar_Click(object sender, EventArgs e)
         {
-            _tiendaPresenter.RealizarCotizacion();
-        }
+            try
+            {
+                _tiendaPresenter.RealizarCotizacion();
+            }
+            catch (Exception ex)
+            {
 
-        public void InicializarControles(TiendaViewModel tienda)
-        {
-            LabelNombreEmpresa.Text = tienda.Nombre;
-            LabelDireccionEmpresa.Text = tienda.Direccion;
-            LabelDatosVendedor.Text = tienda.Vendedor;
+                MessageBox.Show(ex.Message, "Ah ocurrido un error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
         private void RadioCamisa_CheckedChanged(object sender, EventArgs e)
         {
             CheckChupin.Enabled = false;
@@ -62,6 +63,28 @@ namespace ExamenQuarkCSharp
             CheckCuelloMao.Checked = false;
             GetPantalones();
         }
+        private void CheckMangaCorta_CheckedChanged(object sender, EventArgs e)
+        {
+            GetCamisas();
+        }
+        private void CheckCuelloMao_CheckedChanged(object sender, EventArgs e)
+        {
+            GetCamisas();
+        }
+        private void CheckChupin_CheckedChanged(object sender, EventArgs e)
+        {
+            GetPantalones();
+        }
+        #endregion
+        #region Metodos publicos
+        public void InicializarControles(TiendaViewModel tienda)
+        {
+            LabelNombreEmpresa.Text = tienda.Nombre;
+            LabelDireccionEmpresa.Text = tienda.Direccion;
+            LabelDatosVendedor.Text = tienda.Vendedor;
+        }
+
+        
         private void RadioCalidadStandard_CheckedChanged(object sender, EventArgs e)
         {
             if (RadioCamisa.Checked)
@@ -102,18 +125,7 @@ namespace ExamenQuarkCSharp
             TextBoxPrecioUnitario.Text = prenda.PrecioUnitario;
         }
 
-        private void CheckMangaCorta_CheckedChanged(object sender, EventArgs e)
-        {
-            GetCamisas();
-        }
-        private void CheckCuelloMao_CheckedChanged(object sender, EventArgs e)
-        {
-            GetCamisas();
-        }
-        private void CheckChupin_CheckedChanged(object sender, EventArgs e)
-        {
-            GetPantalones();
-        }
+        
         public bool IsMangaCorta()
         {
             return CheckMangaCorta.Checked;
@@ -131,6 +143,8 @@ namespace ExamenQuarkCSharp
 
         public FormDataViewModel GetFormData()
         {
+            ValidarCampos();
+
             FormDataViewModel formDataViewModel = new FormDataViewModel()
             {
                 CantidadCotizada = int.Parse(TextBoxCantidad.Text),
@@ -144,9 +158,18 @@ namespace ExamenQuarkCSharp
             return formDataViewModel;
         }
 
+        private void ValidarCampos()
+        {
+            if (!RadioCamisa.Checked && !RadioPantalon.Checked)
+                throw new Exception("Debe elegir una tipo de prenda a cotizar");
+            if (string.IsNullOrEmpty(TextBoxCantidad.Text))
+                throw new Exception("La cantidad es requerida");
+            if (!int.TryParse(TextBoxCantidad.Text, out int intTest))
+                throw new Exception("Debe ingresar un numero como cantidad");
+        }
         public void MostrarError(string mensaje)
         {
-            MessageBox.Show(mensaje);
+            MessageBox.Show(mensaje, "Ah ocurrido un error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public void ActualizarLabelMontoCotizado(string montoCotizado)
@@ -159,5 +182,7 @@ namespace ExamenQuarkCSharp
             var historialForm = new Historial(historial);
             historialForm.ShowDialog();
         }
+        #endregion
+
     }
 }

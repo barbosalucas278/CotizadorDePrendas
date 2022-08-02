@@ -11,6 +11,7 @@ namespace ExamenQuarkCSharp.Presenters
     {
         private Tienda _tienda;
         private IView _view;
+        private Vendedor _empleado;
         public TiendaPresenter()
         {
 
@@ -19,6 +20,7 @@ namespace ExamenQuarkCSharp.Presenters
         {
             _view = view;
             _tienda = InicializarTienda();
+            _empleado = _tienda.Empleados.FirstOrDefault();
             TiendaViewModel tiendaVM = new TiendaViewModel()
             {
                 Nombre = _tienda.Nombre,
@@ -34,18 +36,18 @@ namespace ExamenQuarkCSharp.Presenters
             Vendedor newVendedor = new Vendedor(109, "Lucas", "Barbosa");
             empleados.Add(newVendedor);
             List<Prenda> prendas = new List<Prenda>();
-            prendas.Add(new Camisa("Camisa Manga Corta, standard, cuello mao", TipoDeCalidad.Standard, 1000, 100, TipoDeCuello.Mao, TipoDeManga.Corta));
-            prendas.Add(new Camisa("Camisa Manga Corta, premium, cuello mao", TipoDeCalidad.Premium, 1000, 100, TipoDeCuello.Mao, TipoDeManga.Corta));
-            prendas.Add(new Camisa("Camisa Manga Corta, premium, cuello comun", TipoDeCalidad.Premium, 1000, 150, TipoDeCuello.Comun, TipoDeManga.Corta));
-            prendas.Add(new Camisa("Camisa Manga Corta, standard, cuello comun", TipoDeCalidad.Standard, 1000, 150, TipoDeCuello.Comun, TipoDeManga.Corta));
-            prendas.Add(new Camisa("Camisa Manga Larga, standard, cuello mao", TipoDeCalidad.Standard, 1000, 75, TipoDeCuello.Mao));
-            prendas.Add(new Camisa("Camisa Manga Larga, premium, cuello mao", TipoDeCalidad.Premium, 1000, 75, TipoDeCuello.Mao));
-            prendas.Add(new Camisa("Camisa Manga Larga, premium, cuello comun", TipoDeCalidad.Premium, 1000, 175));
-            prendas.Add(new Camisa("Camisa Manga Larga, standard, cuello comun", TipoDeCalidad.Standard, 1000, 175));
-            prendas.Add(new Pantalon("Pantalon Chupín, standard", TipoDeCalidad.Standard, 2000, 750, TipoDeCalce.Chupin));
-            prendas.Add(new Pantalon("Pantalon Chupín, premium", TipoDeCalidad.Premium, 2000, 750, TipoDeCalce.Chupin));
-            prendas.Add(new Pantalon("Pantalon Común, standard", TipoDeCalidad.Standard, 2000, 250));
-            prendas.Add(new Pantalon("Pantalon Común, premium", TipoDeCalidad.Premium, 2000, 250));
+            prendas.Add(new Camisa("Camisa Manga Corta, standard, cuello mao", TipoDeCalidad.Standard, 100, 100, TipoDeCuello.Mao, TipoDeManga.Corta));
+            prendas.Add(new Camisa("Camisa Manga Corta, premium, cuello mao", TipoDeCalidad.Premium, 100, 100, TipoDeCuello.Mao, TipoDeManga.Corta));
+            prendas.Add(new Camisa("Camisa Manga Corta, premium, cuello comun", TipoDeCalidad.Premium, 100, 150, TipoDeCuello.Comun, TipoDeManga.Corta));
+            prendas.Add(new Camisa("Camisa Manga Corta, standard, cuello comun", TipoDeCalidad.Standard, 100, 150, TipoDeCuello.Comun, TipoDeManga.Corta));
+            prendas.Add(new Camisa("Camisa Manga Larga, standard, cuello mao", TipoDeCalidad.Standard, 100, 75, TipoDeCuello.Mao));
+            prendas.Add(new Camisa("Camisa Manga Larga, premium, cuello mao", TipoDeCalidad.Premium, 100, 75, TipoDeCuello.Mao));
+            prendas.Add(new Camisa("Camisa Manga Larga, premium, cuello comun", TipoDeCalidad.Premium, 100, 175));
+            prendas.Add(new Camisa("Camisa Manga Larga, standard, cuello comun", TipoDeCalidad.Standard, 100, 175));
+            prendas.Add(new Pantalon("Pantalon Chupín, standard", TipoDeCalidad.Standard, 100, 750, TipoDeCalce.Chupin));
+            prendas.Add(new Pantalon("Pantalon Chupín, premium", TipoDeCalidad.Premium, 100, 750, TipoDeCalce.Chupin));
+            prendas.Add(new Pantalon("Pantalon Común, standard", TipoDeCalidad.Standard, 100, 250));
+            prendas.Add(new Pantalon("Pantalon Común, premium", TipoDeCalidad.Premium, 100, 250));
 
             Tienda newTienda = new Tienda("Lunabe", "Rio Turbio", 1685, "Buenos Aires", empleados, prendas);
             return newTienda;
@@ -188,8 +190,8 @@ namespace ExamenQuarkCSharp.Presenters
             {
                 FormDataViewModel formDataVM = _view.GetFormData();
                 Prenda prendaCotizada = ProcesarFormData(formDataVM);
-                Cotizacion cotizacion = _tienda.Empleados.FirstOrDefault().Cotizar(prendaCotizada, formDataVM.CantidadCotizada);
-                _tienda.GuardarCotizacion(cotizacion);
+                Cotizacion cotizacion = _empleado.Cotizar(prendaCotizada, formDataVM.CantidadCotizada);
+                _empleado.GuardarCotizacion(cotizacion);
                 _view.ActualizarLabelMontoCotizado(cotizacion.Monto.ToString());
             }
             catch (Exception ex)
@@ -229,7 +231,7 @@ namespace ExamenQuarkCSharp.Presenters
         }
         public void ListarCotizaciones()
         {
-            _view.ActualizarFormHistorial(_tienda.MostrarHistorialDeCotizaciones());
+            _view.ActualizarFormHistorial(_empleado.MostrarHistorialDeCotizaciones());
         }
     }
 }

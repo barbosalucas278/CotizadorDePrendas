@@ -13,6 +13,7 @@ namespace ExamenQuarkCSharp.Models
     }
     public class Pantalon : Prenda
     {
+        public TipoDeCalce Calce { get; set; }
         public Pantalon() : base()
         {
             Calce = TipoDeCalce.Comun;
@@ -23,7 +24,6 @@ namespace ExamenQuarkCSharp.Models
             Calce = calce;
         }
 
-        public TipoDeCalce Calce { get; set; }
 
         public override float CalcularCotizacion()
         {
