@@ -84,7 +84,7 @@ namespace ExamenQuarkCSharp
             LabelDatosVendedor.Text = tienda.Vendedor;
         }
 
-        
+
         private void RadioCalidadStandard_CheckedChanged(object sender, EventArgs e)
         {
             if (RadioCamisa.Checked)
@@ -125,7 +125,7 @@ namespace ExamenQuarkCSharp
             TextBoxPrecioUnitario.Text = prenda.PrecioUnitario;
         }
 
-        
+
         public bool IsMangaCorta()
         {
             return CheckMangaCorta.Checked;
@@ -147,6 +147,7 @@ namespace ExamenQuarkCSharp
             var test = RadioCalidadStandard.Checked;
             FormDataViewModel formDataViewModel = new FormDataViewModel()
             {
+                PrecioCotizado = int.Parse(TextBoxPrecioUnitario.Text),
                 CantidadCotizada = int.Parse(TextBoxCantidad.Text),
                 IsCamisa = RadioCamisa.Checked,
                 IsMangaCorta = CheckMangaCorta.Checked,
@@ -164,8 +165,10 @@ namespace ExamenQuarkCSharp
                 throw new Exception("Debe elegir una tipo de prenda a cotizar");
             if (string.IsNullOrEmpty(TextBoxCantidad.Text))
                 throw new Exception("La cantidad es requerida");
-            if (!int.TryParse(TextBoxCantidad.Text, out int intTest))
+            if (!int.TryParse(TextBoxCantidad.Text, out int bufferCantidad))
                 throw new Exception("Debe ingresar un numero como cantidad");
+            if (!int.TryParse(TextBoxPrecioUnitario.Text, out int bufferPrecio))
+                throw new Exception("Debe ingresar un numero como precio");
         }
         public void MostrarError(string mensaje)
         {

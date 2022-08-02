@@ -15,5 +15,6 @@ namespace ExamenQuarkCSharp.Models
         public bool IsStandard { get; set; }
         public int StockDisponible { get; set; }
         public int CantidadCotizada { get; set; }
+        public float PrecioCotizado { get; set; }
     }
 }

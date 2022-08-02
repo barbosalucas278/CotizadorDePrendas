@@ -18,11 +18,10 @@ namespace ExamenQuarkCSharp.Models
         {
 
         }
-        public Prenda(string detalle, TipoDeCalidad calidad, float precioUnitario, int cantidad)
+        public Prenda(string detalle, TipoDeCalidad calidad, int cantidad)
         {
             Detalle = detalle;
             Calidad = calidad;
-            PrecioUnitario = precioUnitario;
             Cantidad = cantidad;
         }
         public abstract float CalcularCotizacion();

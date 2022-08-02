@@ -11,7 +11,7 @@ namespace ExamenQuarkCSharp.Models
         public int Codigo { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public List<Cotizacion> HistorialDeCotizaciones { get; set; }
+        private List<Cotizacion> HistorialDeCotizaciones { get; set; }
 
         public Vendedor()
         {

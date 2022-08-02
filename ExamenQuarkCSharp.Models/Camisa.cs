@@ -25,8 +25,8 @@ namespace ExamenQuarkCSharp.Models
             Cuello = TipoDeCuello.Comun;
             Manga = TipoDeManga.Larga;
         }
-        public Camisa(string detalle, TipoDeCalidad calidad, float precioUnitario, int cantidad, TipoDeCuello cuello = TipoDeCuello.Comun,
-            TipoDeManga manga = TipoDeManga.Larga) : base(detalle, calidad, precioUnitario, cantidad)
+        public Camisa(string detalle, TipoDeCalidad calidad, int cantidad, TipoDeCuello cuello = TipoDeCuello.Comun,
+            TipoDeManga manga = TipoDeManga.Larga) : base(detalle, calidad, cantidad)
         {
             Cuello = cuello;
             Manga = manga;

@@ -18,8 +18,8 @@ namespace ExamenQuarkCSharp.Models
         {
             Calce = TipoDeCalce.Comun;
         }
-        public Pantalon(string detalle, TipoDeCalidad calidad, float precioUnitario, int cantidad, TipoDeCalce calce = TipoDeCalce.Comun)
-            : base(detalle, calidad, precioUnitario, cantidad)
+        public Pantalon(string detalle, TipoDeCalidad calidad, int cantidad, TipoDeCalce calce = TipoDeCalce.Comun)
+            : base(detalle, calidad, cantidad)
         {
             Calce = calce;
         }

@@ -36,18 +36,18 @@ namespace ExamenQuarkCSharp.Presenters
             Vendedor newVendedor = new Vendedor(109, "Lucas", "Barbosa");
             empleados.Add(newVendedor);
             List<Prenda> prendas = new List<Prenda>();
-            prendas.Add(new Camisa("Camisa Manga Corta, standard, cuello mao", TipoDeCalidad.Standard, 100, 100, TipoDeCuello.Mao, TipoDeManga.Corta));
-            prendas.Add(new Camisa("Camisa Manga Corta, premium, cuello mao", TipoDeCalidad.Premium, 100, 100, TipoDeCuello.Mao, TipoDeManga.Corta));
-            prendas.Add(new Camisa("Camisa Manga Corta, premium, cuello comun", TipoDeCalidad.Premium, 100, 150, TipoDeCuello.Comun, TipoDeManga.Corta));
-            prendas.Add(new Camisa("Camisa Manga Corta, standard, cuello comun", TipoDeCalidad.Standard, 100, 150, TipoDeCuello.Comun, TipoDeManga.Corta));
-            prendas.Add(new Camisa("Camisa Manga Larga, standard, cuello mao", TipoDeCalidad.Standard, 100, 75, TipoDeCuello.Mao));
-            prendas.Add(new Camisa("Camisa Manga Larga, premium, cuello mao", TipoDeCalidad.Premium, 100, 75, TipoDeCuello.Mao));
-            prendas.Add(new Camisa("Camisa Manga Larga, premium, cuello comun", TipoDeCalidad.Premium, 100, 175));
-            prendas.Add(new Camisa("Camisa Manga Larga, standard, cuello comun", TipoDeCalidad.Standard, 100, 175));
-            prendas.Add(new Pantalon("Pantalon Chupín, standard", TipoDeCalidad.Standard, 100, 750, TipoDeCalce.Chupin));
-            prendas.Add(new Pantalon("Pantalon Chupín, premium", TipoDeCalidad.Premium, 100, 750, TipoDeCalce.Chupin));
-            prendas.Add(new Pantalon("Pantalon Común, standard", TipoDeCalidad.Standard, 100, 250));
-            prendas.Add(new Pantalon("Pantalon Común, premium", TipoDeCalidad.Premium, 100, 250));
+            prendas.Add(new Camisa("Camisa Manga Corta, standard, cuello mao", TipoDeCalidad.Standard, 100, TipoDeCuello.Mao, TipoDeManga.Corta));
+            prendas.Add(new Camisa("Camisa Manga Corta, premium, cuello mao", TipoDeCalidad.Premium, 100, TipoDeCuello.Mao, TipoDeManga.Corta));
+            prendas.Add(new Camisa("Camisa Manga Corta, premium, cuello comun", TipoDeCalidad.Premium, 150, TipoDeCuello.Comun, TipoDeManga.Corta));
+            prendas.Add(new Camisa("Camisa Manga Corta, standard, cuello comun", TipoDeCalidad.Standard, 150, TipoDeCuello.Comun, TipoDeManga.Corta));
+            prendas.Add(new Camisa("Camisa Manga Larga, standard, cuello mao", TipoDeCalidad.Standard, 75, TipoDeCuello.Mao));
+            prendas.Add(new Camisa("Camisa Manga Larga, premium, cuello mao", TipoDeCalidad.Premium, 75, TipoDeCuello.Mao));
+            prendas.Add(new Camisa("Camisa Manga Larga, premium, cuello comun", TipoDeCalidad.Premium, 175));
+            prendas.Add(new Camisa("Camisa Manga Larga, standard, cuello comun", TipoDeCalidad.Standard, 175));
+            prendas.Add(new Pantalon("Pantalon Chupín, standard", TipoDeCalidad.Standard, 750, TipoDeCalce.Chupin));
+            prendas.Add(new Pantalon("Pantalon Chupín, premium", TipoDeCalidad.Premium, 750, TipoDeCalce.Chupin));
+            prendas.Add(new Pantalon("Pantalon Común, standard", TipoDeCalidad.Standard, 250));
+            prendas.Add(new Pantalon("Pantalon Común, premium", TipoDeCalidad.Premium, 250));
 
             Tienda newTienda = new Tienda("Lunabe", "Rio Turbio", 1685, "Buenos Aires", empleados, prendas);
             return newTienda;
@@ -202,29 +202,32 @@ namespace ExamenQuarkCSharp.Presenters
 
         private Prenda ProcesarFormData(FormDataViewModel formDataVM)
         {
+            Prenda prendaFormData = null;
             if (formDataVM.IsCamisa)
             {
                 if (formDataVM.IsStandard)
                 {
-                    return GetCamisasStandard();
+                    prendaFormData =  GetCamisasStandard();
                 }
                 else
                 {
-                    return GetCamisasPremium();
+                    prendaFormData =  GetCamisasPremium();
                 }
             }
             else
             {
                 if (formDataVM.IsStandard)
                 {
-                    return GetPantalonesStandard();
+                    prendaFormData =  GetPantalonesStandard();
                 }
                 else
                 {
-                    return GetPantalonesPremium();
+                    prendaFormData =  GetPantalonesPremium();
                 }
             }
-        }        
+            prendaFormData.PrecioUnitario = formDataVM.PrecioCotizado;
+            return prendaFormData;
+        }
         private PrendaViewModel MapPrendaToPrendaViewModel(Prenda prenda)
         {
             return new PrendaViewModel() { PrecioUnitario = prenda.PrecioUnitario.ToString(), StockDisponible = prenda.Cantidad.ToString() };

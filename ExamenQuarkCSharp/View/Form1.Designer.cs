@@ -199,7 +199,7 @@ namespace ExamenQuarkCSharp
             // 
             // TextBoxCantidad
             // 
-            this.TextBoxCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxCantidad.Location = new System.Drawing.Point(148, 24);
             this.TextBoxCantidad.Multiline = true;
             this.TextBoxCantidad.Name = "TextBoxCantidad";
@@ -208,7 +208,6 @@ namespace ExamenQuarkCSharp
             // 
             // TextBoxPrecioUnitario
             // 
-            this.TextBoxPrecioUnitario.Enabled = false;
             this.TextBoxPrecioUnitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPrecioUnitario.Location = new System.Drawing.Point(26, 24);
             this.TextBoxPrecioUnitario.Multiline = true;
