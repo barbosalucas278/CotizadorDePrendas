@@ -11,103 +11,114 @@ namespace ExamenQuarkCSharp.UnitTest
         public void ShouldBeTenPercentLessFromPriceIfShirtHasShortSleeves()
         {
             //act
-            Vendedor vendedor = new Vendedor();
             Prenda camisaMangaCorta = new Camisa()
             {
                 Manga = TipoDeManga.Corta,
                 Calidad = TipoDeCalidad.Premium,
-                PrecioUnitario = 100
+                PrecioUnitario = 100,
+                Cantidad = 2
             };
-            Cotizacion cotizacion = new Cotizacion();
             //arrange
-            cotizacion = vendedor.Cotizar(camisaMangaCorta);
+            float precio = camisaMangaCorta.CalcularCotizacion();
             //assert
-            Assert.AreEqual(117, cotizacion.Monto);
+            Assert.AreEqual(117, precio);
         }
         [TestMethod]
         public void ShouldBeThreePercentMoreFromPriceIfShirtHasMaoNeck()
         {
             //act
-            Vendedor vendedor = new Vendedor();
             Prenda camisaCuelloMao = new Camisa()
             {
                 Cuello = TipoDeCuello.Mao,
                 Calidad = TipoDeCalidad.Premium,
-                PrecioUnitario = 100
+                PrecioUnitario = 100,
+                Cantidad = 2
             };
-            Cotizacion cotizacion = new Cotizacion();
             //arrange
-            cotizacion = vendedor.Cotizar(camisaCuelloMao);
+            float precio = camisaCuelloMao.CalcularCotizacion();
             //assert
-            Assert.AreEqual(133.9f, cotizacion.Monto);
+            Assert.AreEqual(133.9f, precio);
         }
         [TestMethod]
         public void ShouldBeThreePercentMoreAndTenPercentLessFromPriceIfShirtHasMaoNeckAndShortSleeves()
         {
             //act
-            Vendedor vendedor = new Vendedor();
             Prenda camisaCuelloMaoMangasCortas = new Camisa()
             {
                 Cuello = TipoDeCuello.Mao,
                 Manga = TipoDeManga.Corta,
                 Calidad = TipoDeCalidad.Premium,
-                PrecioUnitario = 100
+                PrecioUnitario = 100,
+                Cantidad = 2
             };
-            Cotizacion cotizacion = new Cotizacion();
             //arrange
-            cotizacion = vendedor.Cotizar(camisaCuelloMaoMangasCortas);
+            float precio = camisaCuelloMaoMangasCortas.CalcularCotizacion();
             //assert
-            Assert.AreEqual(120.9f, cotizacion.Monto);
+            Assert.AreEqual(120.9f, precio);
         }
         [TestMethod]
         public void ShouldBeTwelvePercentLessFromPriceIfPantsIsChupin()
         {
             //act
-            Vendedor vendedor = new Vendedor();
             Prenda pantalonChupin = new Pantalon()
             {
                 Calce = TipoDeCalce.Chupin,
                 Calidad = TipoDeCalidad.Premium,
-                PrecioUnitario = 100
+                PrecioUnitario = 100,
+                Cantidad = 2
             };
-            Cotizacion cotizacion = new Cotizacion();
             //arrange
-            cotizacion = vendedor.Cotizar(pantalonChupin);
+            float precio = pantalonChupin.CalcularCotizacion();
             //assert
-            Assert.AreEqual(114.4f, cotizacion.Monto);
+            Assert.AreEqual(114.4f, precio);
         }
         [TestMethod]
-        [ExpectedException(typeof(CotizacionException))]
         public void ThePriceShouldNotBeModifiedIfTheGarmentIsOfAStandardType()
         {
             //act
-            Vendedor vendedor = new Vendedor();
             Prenda pantalonChupin = new Pantalon()
             {
                 Calce = TipoDeCalce.Chupin,
                 PrecioUnitario = 100,
-                Calidad = TipoDeCalidad.Standard
+                Calidad = TipoDeCalidad.Standard,
+                Cantidad = 2
             };
-            Cotizacion cotizacion = new Cotizacion();
             //arrange
-            cotizacion = vendedor.Cotizar(pantalonChupin);
+            float precio = pantalonChupin.CalcularCotizacion();
             //assert
+            Assert.AreEqual(pantalonChupin.PrecioUnitario, precio);
         }
         [TestMethod]
         public void ThePriceShouldBIncreasedByThirtyPercentIfTheGarmentIsPremiumType()
         {
             //act
+            Prenda pantalonChupin = new Pantalon()
+            {
+                PrecioUnitario = 100,
+                Calidad = TipoDeCalidad.Premium,
+                Cantidad = 2
+            };
+            //arrange
+            float precio = pantalonChupin.CalcularCotizacion();
+            //assert
+            Assert.AreEqual(130, precio);
+
+        }
+        [TestMethod]
+        [ExpectedException(typeof(CotizacionException))]
+        public void TheQuotedQuantityMutsBeLessThanOrEqualToTheAvailableQuantity()
+        {
+            //act
             Vendedor vendedor = new Vendedor();
             Prenda pantalonChupin = new Pantalon()
             {
                 PrecioUnitario = 100,
-                Calidad = TipoDeCalidad.Premium
+                Calidad = TipoDeCalidad.Premium,
+                Cantidad = 10
             };
             //arrange
-            Cotizacion cotizacion = vendedor.Cotizar(pantalonChupin);
+            Cotizacion cotizacion = vendedor.Cotizar(pantalonChupin, 11);
             //assert
-            Assert.AreEqual(130, cotizacion.Monto);
-
         }
     }
 }

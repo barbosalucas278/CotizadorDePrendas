@@ -43,11 +43,14 @@
   <ItemGroup>
     <Compile Include="Camisa.cs" />
     <Compile Include="Cotizacion.cs" />
+    <Compile Include="FormDataViewModel.cs" />
     <Compile Include="Direccion.cs" />
     <Compile Include="Pantalon.cs" />
     <Compile Include="Prenda.cs" />
     <Compile Include="CotizacionException.cs" />
+    <Compile Include="PrendaViewModel.cs" />
     <Compile Include="Tienda.cs" />
+    <Compile Include="TiendaViewModel.cs" />
     <Compile Include="Vendedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

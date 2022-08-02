@@ -89,6 +89,7 @@ namespace ExamenQuarkCSharp
             this.CheckChupin.TabIndex = 6;
             this.CheckChupin.Text = "Chupín";
             this.CheckChupin.UseVisualStyleBackColor = true;
+            this.CheckChupin.CheckedChanged += new System.EventHandler(this.CheckChupin_CheckedChanged);
             // 
             // CheckCuelloMao
             // 
@@ -100,6 +101,7 @@ namespace ExamenQuarkCSharp
             this.CheckCuelloMao.TabIndex = 5;
             this.CheckCuelloMao.Text = "Cuello Mao";
             this.CheckCuelloMao.UseVisualStyleBackColor = true;
+            this.CheckCuelloMao.CheckedChanged += new System.EventHandler(this.CheckCuelloMao_CheckedChanged);
             // 
             // CheckMangaCorta
             // 
@@ -111,6 +113,7 @@ namespace ExamenQuarkCSharp
             this.CheckMangaCorta.TabIndex = 4;
             this.CheckMangaCorta.Text = "Manga Corta";
             this.CheckMangaCorta.UseVisualStyleBackColor = true;
+            this.CheckMangaCorta.CheckedChanged += new System.EventHandler(this.CheckMangaCorta_CheckedChanged);
             // 
             // RadioPantalon
             // 
@@ -122,6 +125,7 @@ namespace ExamenQuarkCSharp
             this.RadioPantalon.TabIndex = 3;
             this.RadioPantalon.Text = "Pantalon";
             this.RadioPantalon.UseVisualStyleBackColor = true;
+            this.RadioPantalon.CheckedChanged += new System.EventHandler(this.RadioPantalon_CheckedChanged);
             // 
             // RadioCamisa
             // 
@@ -134,6 +138,7 @@ namespace ExamenQuarkCSharp
             this.RadioCamisa.TabIndex = 2;
             this.RadioCamisa.Text = "Camisa";
             this.RadioCamisa.UseVisualStyleBackColor = false;
+            this.RadioCamisa.CheckedChanged += new System.EventHandler(this.RadioCamisa_CheckedChanged);
             // 
             // label2
             // 
@@ -162,13 +167,13 @@ namespace ExamenQuarkCSharp
             this.RadioCalidadPremium.Name = "RadioCalidadPremium";
             this.RadioCalidadPremium.Size = new System.Drawing.Size(81, 21);
             this.RadioCalidadPremium.TabIndex = 1;
-            this.RadioCalidadPremium.TabStop = true;
             this.RadioCalidadPremium.Text = "Premium";
             this.RadioCalidadPremium.UseVisualStyleBackColor = true;
             // 
             // RadioCalidadStandard
             // 
             this.RadioCalidadStandard.AutoSize = true;
+            this.RadioCalidadStandard.Checked = true;
             this.RadioCalidadStandard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RadioCalidadStandard.Location = new System.Drawing.Point(17, 30);
             this.RadioCalidadStandard.Name = "RadioCalidadStandard";
@@ -177,6 +182,7 @@ namespace ExamenQuarkCSharp
             this.RadioCalidadStandard.TabStop = true;
             this.RadioCalidadStandard.Text = "Standard";
             this.RadioCalidadStandard.UseVisualStyleBackColor = true;
+            this.RadioCalidadStandard.CheckedChanged += new System.EventHandler(this.RadioCalidadStandard_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -193,6 +199,7 @@ namespace ExamenQuarkCSharp
             // 
             // TextBoxCantidad
             // 
+            this.TextBoxCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxCantidad.Location = new System.Drawing.Point(148, 24);
             this.TextBoxCantidad.Multiline = true;
             this.TextBoxCantidad.Name = "TextBoxCantidad";
@@ -201,6 +208,8 @@ namespace ExamenQuarkCSharp
             // 
             // TextBoxPrecioUnitario
             // 
+            this.TextBoxPrecioUnitario.Enabled = false;
+            this.TextBoxPrecioUnitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPrecioUnitario.Location = new System.Drawing.Point(26, 24);
             this.TextBoxPrecioUnitario.Multiline = true;
             this.TextBoxPrecioUnitario.Name = "TextBoxPrecioUnitario";
@@ -262,7 +271,7 @@ namespace ExamenQuarkCSharp
             this.LabelDireccionEmpresa.BackColor = System.Drawing.SystemColors.Control;
             this.LabelDireccionEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelDireccionEmpresa.ForeColor = System.Drawing.Color.Purple;
-            this.LabelDireccionEmpresa.Location = new System.Drawing.Point(320, 9);
+            this.LabelDireccionEmpresa.Location = new System.Drawing.Point(279, 9);
             this.LabelDireccionEmpresa.Name = "LabelDireccionEmpresa";
             this.LabelDireccionEmpresa.Size = new System.Drawing.Size(144, 13);
             this.LabelDireccionEmpresa.TabIndex = 7;
@@ -352,11 +361,11 @@ namespace ExamenQuarkCSharp
             // LabelMonto
             // 
             this.LabelMonto.AutoSize = true;
+            this.LabelMonto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelMonto.Location = new System.Drawing.Point(303, 453);
             this.LabelMonto.Name = "LabelMonto";
-            this.LabelMonto.Size = new System.Drawing.Size(41, 13);
+            this.LabelMonto.Size = new System.Drawing.Size(0, 17);
             this.LabelMonto.TabIndex = 16;
-            this.LabelMonto.Text = "label14";
             // 
             // label15
             // 
@@ -392,6 +401,7 @@ namespace ExamenQuarkCSharp
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cotizador Express";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);

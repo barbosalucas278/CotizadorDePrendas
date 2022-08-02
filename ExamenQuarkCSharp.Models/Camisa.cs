@@ -25,29 +25,38 @@ namespace ExamenQuarkCSharp.Models
             Cuello = TipoDeCuello.Comun;
             Manga = TipoDeManga.Larga;
         }
-        public Camisa(string detalle, TipoDeCalidad calidad, float precioUnitario, int cantidad, TipoDeCuello cuello, TipoDeManga manga)
-            :base(detalle,calidad,precioUnitario,cantidad)
+        public Camisa(string detalle, TipoDeCalidad calidad, float precioUnitario, int cantidad, TipoDeCuello cuello = TipoDeCuello.Comun,
+            TipoDeManga manga = TipoDeManga.Larga) : base(detalle, calidad, precioUnitario, cantidad)
         {
             Cuello = cuello;
             Manga = manga;
         }
-        public override Cotizacion CalcularCotizacion()
+        public override float CalcularCotizacion()
         {
-            Cotizacion cotizacion = new Cotizacion(this)
-            {
-                Monto = PrecioUnitario,
-            };
+            if (Calidad == TipoDeCalidad.Standard)
+                return PrecioUnitario;
+
+            float monto = PrecioUnitario + (PrecioUnitario * 0.3f);
             if (Manga == TipoDeManga.Corta)
             {
                 float descuento = PrecioUnitario * (float)0.1;
-                cotizacion.Monto -= descuento;
+                monto -= descuento;
             }
             if (Cuello == TipoDeCuello.Mao)
             {
                 float recargo = PrecioUnitario * (float)0.03;
-                cotizacion.Monto += recargo;
+                monto += recargo;
             }
-            return cotizacion;
+            return monto;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder st = new StringBuilder();
+            st.AppendLine($"{base.ToString()}");
+            st.AppendLine($"Tipo de Manga: {Manga}");
+            st.AppendLine($"Tipo de Cuello: {Cuello}");
+            return st.ToString();
         }
     }
 }

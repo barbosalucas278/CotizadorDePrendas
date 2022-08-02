@@ -1,4 +1,6 @@
-﻿namespace ExamenQuarkCSharp.Models
+﻿using System.Text;
+
+namespace ExamenQuarkCSharp.Models
 {
     public enum TipoDeCalidad
     {
@@ -38,6 +40,13 @@
                 this.precioUnitario = value;
             }
         }
-        public abstract Cotizacion CalcularCotizacion();
+        public abstract float CalcularCotizacion();
+        public override string ToString()
+        {
+            StringBuilder st = new StringBuilder();
+            st.AppendLine($"Detalle: {Detalle}");
+            st.AppendLine($"Calidad: {Calidad}");
+            return st.ToString();
+        }
     }
 }

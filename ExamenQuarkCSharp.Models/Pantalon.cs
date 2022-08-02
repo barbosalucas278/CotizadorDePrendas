@@ -13,11 +13,11 @@ namespace ExamenQuarkCSharp.Models
     }
     public class Pantalon : Prenda
     {
-        public Pantalon():base()
+        public Pantalon() : base()
         {
             Calce = TipoDeCalce.Comun;
         }
-        public Pantalon(string detalle, TipoDeCalidad calidad, float precioUnitario, int cantidad, TipoDeCalce calce)
+        public Pantalon(string detalle, TipoDeCalidad calidad, float precioUnitario, int cantidad, TipoDeCalce calce = TipoDeCalce.Comun)
             : base(detalle, calidad, precioUnitario, cantidad)
         {
             Calce = calce;
@@ -25,18 +25,27 @@ namespace ExamenQuarkCSharp.Models
 
         public TipoDeCalce Calce { get; set; }
 
-        public override Cotizacion CalcularCotizacion()
+        public override float CalcularCotizacion()
         {
-            Cotizacion cotizacion = new Cotizacion(this)
-            {
-                Monto = PrecioUnitario,
-            }; if (Calce == TipoDeCalce.Chupin)
+           
+            if (Calidad == TipoDeCalidad.Standard)
+                return PrecioUnitario;
+
+            float monto = PrecioUnitario + (PrecioUnitario * 0.3f);
+            if (Calce == TipoDeCalce.Chupin)
             {
                 float descuento = PrecioUnitario * (float)0.12;
-                cotizacion.Monto -= descuento;
+                monto -= descuento;
             }
 
-            return cotizacion;
+            return monto;
+        }
+        public override string ToString()
+        {
+            StringBuilder st = new StringBuilder();
+            st.AppendLine($"{base.ToString()}");
+            st.AppendLine($"Tipo de Calce: {Calce}");
+            return st.ToString();
         }
     }
 }
