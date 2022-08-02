@@ -27,18 +27,17 @@ namespace ExamenQuarkCSharp.Models
 
         public override float CalcularCotizacion()
         {
-           
-            if (Calidad == TipoDeCalidad.Standard)
-                return PrecioUnitario;
-
-            float monto = PrecioUnitario + (PrecioUnitario * 0.3f);
+            float monto = PrecioUnitario;
             if (Calce == TipoDeCalce.Chupin)
             {
-                float descuento = PrecioUnitario * (float)0.12;
+                float descuento = monto * (float)0.12;
                 monto -= descuento;
             }
 
-            return monto;
+            if (Calidad == TipoDeCalidad.Standard)
+                return monto;
+            else
+                return monto + (monto * (float)0.3);
         }
         public override string ToString()
         {

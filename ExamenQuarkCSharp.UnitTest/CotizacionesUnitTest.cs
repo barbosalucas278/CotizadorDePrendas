@@ -14,14 +14,14 @@ namespace ExamenQuarkCSharp.UnitTest
             Prenda camisaMangaCorta = new Camisa()
             {
                 Manga = TipoDeManga.Corta,
-                Calidad = TipoDeCalidad.Premium,
+                Calidad = TipoDeCalidad.Standard,
                 PrecioUnitario = 100,
                 Cantidad = 2
             };
             //arrange
             float precio = camisaMangaCorta.CalcularCotizacion();
             //assert
-            Assert.AreEqual(117, precio);
+            Assert.AreEqual(90, precio);
         }
         [TestMethod]
         public void ShouldBeThreePercentMoreFromPriceIfShirtHasMaoNeck()
@@ -30,14 +30,14 @@ namespace ExamenQuarkCSharp.UnitTest
             Prenda camisaCuelloMao = new Camisa()
             {
                 Cuello = TipoDeCuello.Mao,
-                Calidad = TipoDeCalidad.Premium,
+                Calidad = TipoDeCalidad.Standard,
                 PrecioUnitario = 100,
                 Cantidad = 2
             };
             //arrange
             float precio = camisaCuelloMao.CalcularCotizacion();
             //assert
-            Assert.AreEqual(133.9f, precio);
+            Assert.AreEqual(103, precio);
         }
         [TestMethod]
         public void ShouldBeThreePercentMoreAndTenPercentLessFromPriceIfShirtHasMaoNeckAndShortSleeves()
@@ -47,14 +47,14 @@ namespace ExamenQuarkCSharp.UnitTest
             {
                 Cuello = TipoDeCuello.Mao,
                 Manga = TipoDeManga.Corta,
-                Calidad = TipoDeCalidad.Premium,
+                Calidad = TipoDeCalidad.Standard,
                 PrecioUnitario = 100,
                 Cantidad = 2
             };
             //arrange
             float precio = camisaCuelloMaoMangasCortas.CalcularCotizacion();
             //assert
-            Assert.AreEqual(120.9f, precio);
+            Assert.AreEqual(92.7f, precio);
         }
         [TestMethod]
         public void ShouldBeTwelvePercentLessFromPriceIfPantsIsChupin()
@@ -63,14 +63,14 @@ namespace ExamenQuarkCSharp.UnitTest
             Prenda pantalonChupin = new Pantalon()
             {
                 Calce = TipoDeCalce.Chupin,
-                Calidad = TipoDeCalidad.Premium,
+                Calidad = TipoDeCalidad.Standard,
                 PrecioUnitario = 100,
                 Cantidad = 2
             };
             //arrange
             float precio = pantalonChupin.CalcularCotizacion();
             //assert
-            Assert.AreEqual(114.4f, precio);
+            Assert.AreEqual(88, precio);
         }
         [TestMethod]
         public void ThePriceShouldNotBeModifiedIfTheGarmentIsOfAStandardType()
@@ -86,7 +86,7 @@ namespace ExamenQuarkCSharp.UnitTest
             //arrange
             float precio = pantalonChupin.CalcularCotizacion();
             //assert
-            Assert.AreEqual(pantalonChupin.PrecioUnitario, precio);
+            Assert.AreEqual(88, precio);
         }
         [TestMethod]
         public void ThePriceShouldBIncreasedByThirtyPercentIfTheGarmentIsPremiumType()
@@ -96,12 +96,13 @@ namespace ExamenQuarkCSharp.UnitTest
             {
                 PrecioUnitario = 100,
                 Calidad = TipoDeCalidad.Premium,
-                Cantidad = 2
+                Calce = TipoDeCalce.Chupin,
+                Cantidad = 1
             };
             //arrange
             float precio = pantalonChupin.CalcularCotizacion();
             //assert
-            Assert.AreEqual(130, precio);
+            Assert.AreEqual(114.4f, precio);
 
         }
         [TestMethod]

@@ -144,7 +144,7 @@ namespace ExamenQuarkCSharp
         public FormDataViewModel GetFormData()
         {
             ValidarCampos();
-
+            var test = RadioCalidadStandard.Checked;
             FormDataViewModel formDataViewModel = new FormDataViewModel()
             {
                 CantidadCotizada = int.Parse(TextBoxCantidad.Text),

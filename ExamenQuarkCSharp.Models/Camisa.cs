@@ -33,21 +33,23 @@ namespace ExamenQuarkCSharp.Models
         }
         public override float CalcularCotizacion()
         {
-            if (Calidad == TipoDeCalidad.Standard)
-                return PrecioUnitario;
 
-            float monto = PrecioUnitario + (PrecioUnitario * 0.3f);
+            float monto = PrecioUnitario;
             if (Manga == TipoDeManga.Corta)
             {
-                float descuento = PrecioUnitario * (float)0.1;
+                float descuento = monto * (float)0.1;
                 monto -= descuento;
             }
             if (Cuello == TipoDeCuello.Mao)
             {
-                float recargo = PrecioUnitario * (float)0.03;
+                float recargo = monto * (float)0.03;
                 monto += recargo;
             }
-            return monto;
+
+            if (Calidad == TipoDeCalidad.Standard)
+                return monto;
+            else
+                return monto + (monto * 0.3f);
         }
 
         public override string ToString()

@@ -90,9 +90,9 @@ namespace ExamenQuarkCSharp.Presenters
             Prenda pantalonesPremium = new Pantalon();
             foreach (Prenda item in _tienda.Stock)
             {
-                if (item is Pantalon pantalon)
+                if (item is Pantalon pantalon && pantalon.Calidad == TipoDeCalidad.Premium)
                 {
-                    if (pantalon.Calidad == TipoDeCalidad.Premium && pantalon.Calce == TipoDeCalce.Comun)
+                    if (pantalon.Calce == TipoDeCalce.Comun)
                     {
                         pantalonesPremium = item;
                         break;
