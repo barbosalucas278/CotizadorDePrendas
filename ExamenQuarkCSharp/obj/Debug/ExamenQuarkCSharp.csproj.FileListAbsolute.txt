@@ -1,0 +1,9 @@
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp\bin\Debug\ExamenQuarkCSharp.exe.config
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp\bin\Debug\ExamenQuarkCSharp.exe
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp\bin\Debug\ExamenQuarkCSharp.pdb
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp\obj\Debug\ExamenQuarkCSharp.csproj.AssemblyReference.cache
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp\obj\Debug\ExamenQuarkCSharp.Properties.Resources.resources
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp\obj\Debug\ExamenQuarkCSharp.csproj.GenerateResource.cache
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp\obj\Debug\ExamenQuarkCSharp.csproj.CoreCompileInputs.cache
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp\obj\Debug\ExamenQuarkCSharp.exe
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp\obj\Debug\ExamenQuarkCSharp.pdb

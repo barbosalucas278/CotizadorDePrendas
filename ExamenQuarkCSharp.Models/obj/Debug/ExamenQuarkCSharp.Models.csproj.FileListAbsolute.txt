@@ -1,0 +1,6 @@
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp.Models\bin\Debug\ExamenQuarkCSharp.Models.dll
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp.Models\bin\Debug\ExamenQuarkCSharp.Models.pdb
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp.Models\obj\Debug\ExamenQuarkCSharp.Models.csproj.AssemblyReference.cache
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp.Models\obj\Debug\ExamenQuarkCSharp.Models.csproj.CoreCompileInputs.cache
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp.Models\obj\Debug\ExamenQuarkCSharp.Models.dll
+C:\Users\barbo\source\repos\ExamenQuarkCSharp\ExamenQuarkCSharp.Models\obj\Debug\ExamenQuarkCSharp.Models.pdb

@@ -155,7 +155,7 @@ namespace ExamenQuarkCSharp.Presenters
             Prenda camisasPremium = new Camisa();
             foreach (Prenda item in _tienda.Stock)
             {
-                if (item is Camisa camisa)
+                if (item is Camisa camisa && camisa.Calidad == TipoDeCalidad.Premium)
                 {
                     if (_view.IsMangaCorta() && camisa.Manga == TipoDeManga.Corta &&
                         _view.IsCuelloMao() && camisa.Cuello == TipoDeCuello.Mao)
@@ -175,7 +175,7 @@ namespace ExamenQuarkCSharp.Presenters
                         camisasPremium = item;
                         break;
                     }
-                    else if (camisa.Calidad == TipoDeCalidad.Premium && camisa.Manga == TipoDeManga.Larga && camisa.Cuello == TipoDeCuello.Comun)
+                    else if (camisa.Manga == TipoDeManga.Larga && camisa.Cuello == TipoDeCuello.Comun)
                     {
                         camisasPremium = item;
                         break;
