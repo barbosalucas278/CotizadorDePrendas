@@ -52,8 +52,6 @@ namespace ExamenQuarkCSharp.Presenters
             Tienda newTienda = new Tienda("Lunabe", "Rio Turbio", 1685, "Buenos Aires", empleados, prendas);
             return newTienda;
         }
-
-
         public void MostrarPantalonesStandard()
         {
             Prenda pantalonesStandard = GetPantalonesStandard();
@@ -116,7 +114,7 @@ namespace ExamenQuarkCSharp.Presenters
             Prenda camisasStandard = new Camisa();
             foreach (Prenda item in _tienda.Stock)
             {
-                if (item is Camisa camisa)
+                if (item is Camisa camisa && camisa.Calidad == TipoDeCalidad.Standard)
                 {
                     if (_view.IsMangaCorta() && camisa.Manga == TipoDeManga.Corta &&
                         _view.IsCuelloMao() && camisa.Cuello == TipoDeCuello.Mao)
@@ -136,7 +134,7 @@ namespace ExamenQuarkCSharp.Presenters
                         camisasStandard = item;
                         break;
                     }
-                    else if (camisa.Calidad == TipoDeCalidad.Standard && camisa.Manga == TipoDeManga.Larga && camisa.Cuello == TipoDeCuello.Comun)
+                    else if (camisa.Manga == TipoDeManga.Larga && camisa.Cuello == TipoDeCuello.Comun)
                     {
                         camisasStandard = item;
                         break;
